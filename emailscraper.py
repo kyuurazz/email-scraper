@@ -1,9 +1,11 @@
 from collections import deque
 from bs4 import BeautifulSoup
+import os
 import requests
 import re
 import urllib.parse
 
+os.system('clear')
 user_url = str(input('[+] Please enter url: '))
 urls = deque([user_url])
 scraped_urls = set()
@@ -23,7 +25,7 @@ try:
 		base_url = f'{parts.scheme}://{parts.netloc}'
 		path = url[:url.rfind('/')+1] if '/' in parts.path else url
 
-		print(f'{count} Process {url}')
+		print(f'{[count]} Process {url}')
 
 		try:
 			response = requests.get(url)
@@ -48,7 +50,7 @@ except KeyboardInterrupt:
 	print('[-] Closing!')
 
 print('\nProcess Complete!')
-print(f'\n{len(emails)} Emails Found \n=========================================')
+print(f'\n{len(emails)} Emails found: \n=========================================')
 
 for mail in emails:
 	print('  '+mail)
